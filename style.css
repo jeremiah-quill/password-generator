@@ -51,7 +51,7 @@ header {
 }
 
 .card-body {
-	min-height: 100px;
+	min-height: 200px;
 }
 
 .card-footer {
@@ -142,20 +142,46 @@ button[disabled] {
 	display: flex;
 }
 
+.modal button {
+	width: 100%;
+	margin-top: 10px;
+	/* margin-bottom: 15px; */
+}
+.modal p {
+	margin: 0;
+	text-align: center;
+}
+
+.modal form {
+	padding: 20px;
+}
+
 @media (max-width: 690px) {
 	.btn {
 		font-size: 1rem;
 		margin: 16px 0px 0px 0px;
 		padding: 10px 15px;
 	}
-
+	.modal {
+		font-size: .75rem;
+	}
+	.modal button {
+		font-size: .75rem;
+	}
 	#password {
 		font-size: 1rem;
 	}
+
+	/* .modal > :first-child {
+		padding: 20px;
+	} */
 }
 
 @media (max-width: 500px) {
 	.btn {
 		font-size: 0.8rem;
+	}
+	.modal button {
+		font-size: .5rem;
 	}
 }
