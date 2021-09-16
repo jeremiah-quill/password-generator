@@ -17,7 +17,28 @@
           <h2>Generate a Password</h2>
         </div>
         <div class="card-body">
-          <div class="modal"></div>
+          <div class="overlay">
+            <div id="request-length">
+                <form>
+                    <label for="length">Choose Required Password Length (between 8 and 128):</label>
+                    <input type="number" id="length" name="length" min="8" max="128" required>
+                    <input type="submit" id="submit-length" value="Next">
+                </form>
+            </div>
+            <div id="request-chars"><p>Required Character Types:</p>
+                <form>
+                    <input class="char-input" type="checkbox" id="lowercase" name="criteria" value="lowercase" required>
+                    <label for="lowercase">Lowercase</label><br>
+                    <input class="char-input" type="checkbox" id="uppercase" name="criteria" value="uppercase" required>
+                    <label for="uppercase">Uppercase</label><br>
+                    <input class="char-input" type="checkbox" id="numeric" name="criteria" value="numeric" required>
+                    <label for="numeric">Numeric</label><br>
+                    <input class="char-input" type="checkbox" id="special" name="criteria" value="special" required>
+                    <label for="special">Special Characters</label><br>
+                    <input type="submit" id="submit-chars" value="Generate">
+                </form>
+                </div>
+          </div>
           <textarea
             readonly
             id="password"

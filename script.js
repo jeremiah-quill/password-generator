@@ -1,177 +1,106 @@
+// TODO: Handle invalid inputs on line 70 and line 95
+
+
 // Variables
 const generateBtn = document.querySelector("#generate");
-const modal = document.querySelector('.modal');
+const overlay = document.querySelector('.overlay');
+const lengthInput = document.querySelector('#length');
+// Turn HTML Collection of inputs into an array
+const characterInputs = Array.from(document.querySelectorAll('.char-input'))
 const lowercases = ['a', 'b', 'c', 'd','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
 const uppercases = lowercases.map(lowercase => lowercase.toUpperCase())
 const numeric = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 const special = [' ',`!`,`”`,	`#`	,`$`	,`%`,	`&`	,`’`	,`(`	,`)`,	`*`,	`+`	,`,`, `-`,	`.`,	`/`,	`:`,	`;`,	`<`,	`=`,	`>`,	`?`,	`@`,	'[', "]",	"^",	"_",	"`",	"{",	"|",	"}",	"~"]
+let length = '';
+let characters = [];
 
 // Functions
-const displayModal = () => {
-  if(modal.classList.contains('flex')) {
-    return
-  } else {
-    modal.classList.add('flex')
-  }
+const showEl = (id) => {
+    document.querySelector(id).style.display = 'block'
+};
+
+const hideEl = (id) => {
+    document.querySelector(id).style.display = 'none'
+;
 }
 
-const closeModal = () => {
-  modal.classList.remove('flex')
-}
-
-const askCriteria = () => {
-  modal.innerHTML = `<div class="criteria"><p>Choose Criteria for Password:</p>
-  <form>
-  <input type="checkbox" id="length" name="criteria" value="length">
-  <label for="length">Password Length (Default: 8)</label><br>
-  <input type="checkbox" id="char" name="criteria" value="chars">
-  <label for="char">Include Specific Characters (Default: all lowercase)</label><br>
-  <button class="criteria-submit">Next</button>
-  </form>
-  </div>`
+const generatePassword = (length, chars) => {
+    let characterList = []
+    if(chars[0]) {
+    characterList.push(...lowercases)
+    }
+    if(chars[1]) {
+    characterList.push(...uppercases)
+    }
+    if(chars[2]) {
+    characterList.push(...numeric)
+    }
+    if(chars[3]) {
+    characterList.push(...special)
+    }
+    let password = ''
+    for(let i=1; i<=length; i++) {
+    password += characterList[getRandomInt(0, characterList.length)]
+    }
+    return password
 }
 
 const getRandomInt = (min, max) => {
-  return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
-}
+    return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
+  }
 
-const gatherData = () => {
-  // Asks what criteria to use for password (either length or specific characters)
-  askCriteria();
+// ** Event Listeners **
+document.querySelector('#submit-length').addEventListener('click', (e) => {
+    e.preventDefault();
 
-  document.querySelector('.criteria-submit').addEventListener('click', (e) => {
-    e.preventDefault()
-    // criteria is an array of booleans [length, characters]
-    let criteria = Array.from(document.querySelectorAll('input')).map(input => input.checked)
+    // Validate that a required length between 8 and 128 (inclusive) is chosen
+    if(lengthInput.value >= 8 && lengthInput.value <= 128) {
+        
+        // Get length value from input and update length variable
+        let lengthInputValue = document.querySelector('#length')
+        length = lengthInputValue.value
     
-    // If neither criteria are chosen, uses length of 8 and only lowercase
-    if(!criteria[0] && !criteria[1]) {
-      let password = ''
-      for(let i=1; i<=8; i++) {
-        password += lowercases[getRandomInt(0, 25)]
-      }
-      writePassword(password)
-    }
-
-    if(criteria[0]) {
-        modal.innerHTML = `<div class="criteria">
-        <form>
-        <label for="number">Password Length (between 8 and 128):</label>
-        <input type="number" id="number" name="number" min="8" max="128">
-        <button class="length-submit">Next</button>
-        </form>
-        </div>`;
-        document.querySelector('.length-submit').addEventListener('click', (e) => {
-          e.preventDefault()
-          let length = document.querySelector('#number').value;
-          
-          if(criteria[1]) {
-            modal.innerHTML = `<div class="criteria"><p>Required Character Types:</p>
-            <form>
-            <input type="checkbox" id="lowercase" name="criteria" value="lowercase">
-            <label for="lowercase">Lowercase</label><br>
-            <input type="checkbox" id="uppercase" name="criteria" value="uppercase">
-            <label for="uppercase">Uppercase</label><br>
-            <input type="checkbox" id="numeric" name="criteria" value="numeric">
-            <label for="numeric">Numeric</label><br>
-            <input type="checkbox" id="special" name="criteria" value="special">
-            <label for="special">Special Characters</label><br>
-            <button class="criteria-submit">Next</button>
-            </form>
-            </div>`;
-            document.querySelector('.criteria-submit').addEventListener('click', (e) => {
-              e.preventDefault()
-              let characters = Array.from(document.querySelectorAll('input')).map(input => input.checked)
-              
-              // GENERATE PASSWORD
-              let characterList = []
-              if(characters[0]) {
-                characterList.push(...lowercases)
-              }
-              if(characters[1]) {
-                characterList.push(...uppercases)
-              }
-              if(characters[2]) {
-                characterList.push(...numeric)
-              }
-              if(characters[3]) {
-                characterList.push(...special)
-              }
-              let password = ''
-              for(let i=1; i<=length; i++) {
-                password += characterList[getRandomInt(0, characterList.length-1)]
-              }
-              writePassword(password)
-              
-            })
-
-          } else {
-
-            // GENERATE PASSWORD
-            let password = ''
-            for(let i=1; i<=length; i++) {
-              password += lowercases[getRandomInt(0, 25)]
-            }
-            writePassword(password)
-          }
-        })
+        // Reset input field, hide required length form, display required character type form
+        lengthInputValue.value = ''
+        hideEl('#request-length')
+        showEl('#request-chars')
 
     } else {
-        modal.innerHTML = `<div class="criteria"><p>Required Character Types:</p>
-        <form>
-        <input type="checkbox" id="lowercase" name="criteria" value="lowercase">
-        <label for="lowercase">Lowercase</label><br>
-        <input type="checkbox" id="uppercase" name="criteria" value="uppercase">
-        <label for="uppercase">Uppercase</label><br>
-        <input type="checkbox" id="numeric" name="criteria" value="numeric">
-        <label for="numeric">Numeric</label><br>
-        <input type="checkbox" id="special" name="criteria" value="special">
-        <label for="special">Special Characters</label><br>
-        <button class="criteria-submit">Next</button>
-        </form>
-        </div>`;
-
-        document.querySelector('.criteria-submit').addEventListener('click', (e) => {
-          e.preventDefault()
-          characters = Array.from(document.querySelectorAll('input')).map(input => input.checked)
-          
-          // GENERATE PASSWORD
-          let characterList = []
-          if(characters[0]) {
-            characterList.push(...lowercases)
-          }
-          if(characters[1]) {
-            characterList.push(...uppercases)
-          }
-          if(characters[2]) {
-            characterList.push(...numeric)
-          }
-          if(characters[3]) {
-            characterList.push(...special)
-          }
-          let password = ''
-          for(let i=1; i<=8; i++) {
-            password += characterList[getRandomInt(0, characterList.length-1)]
-          }
-          writePassword(password)
-        })
+        // Display message "Please choose a password length between 8 and 128"
+        console.log('Please choose a password length between 8 and 128')
     }
-  })
-}
+})
 
-const writePassword = (password) => {
-  var passwordText = document.querySelector('#password')
-  passwordText.value = password
-  closeModal()
-}
+document.querySelector('#submit-chars').addEventListener('click', (e) => {
+    e.preventDefault();
+    
+    characters = characterInputs.map(input => input.checked)
 
-const generatePassword = () => {
-  displayModal()
-  gatherData()
-}
+    // Validate that at least one of the character type checkboxes is true
+    if(characters.includes(true)) {
+        // Reset checkbox inputs and hide form element
+    characterInputs.forEach(input => input.checked = false)
+    hideEl('#request-chars');
 
+    // Generate password based on chosen criteria, hide overlay element, and write password to textarea
+    let password = generatePassword(length, characters)
+    overlay.style.display = 'none';
+    document.querySelector('#password').value = password
 
+    // Make generate button clickable after password has been generated and printed to screen
+    generateBtn.disabled = false;
 
+    } else {
+        // Display message "Please choose at least one required character type"
+        console.log('Please choose at least one required character type')
+    }
+})
 
-// Add event listener to generate button
-generateBtn.addEventListener("click", generatePassword);
+generateBtn.addEventListener('click', () => {
+    // Disable generate button so you can't click it while going through criteria prompts
+    generateBtn.disabled = true;
+    // Display overlay
+    overlay.style.display = 'flex';
+    // Display form requesting required length of password
+    showEl('#request-length');
+})

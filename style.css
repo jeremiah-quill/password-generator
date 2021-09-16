@@ -1,3 +1,5 @@
+/* Todo: Clean up responsiveness for criteria prompts */
+
 *,
 *::before,
 *::after {
@@ -117,44 +119,37 @@ button[disabled] {
 	overflow: hidden;
 }
 
-/* Creating relative layer for modal to overlap */
+/* Creating relative layer on which to overlay inputs */
 .card-body {
 	position: relative;
 }
 
-/* Creating modal, display: none */
-.modal {
+/* Creating overlay, display: none */
+.overlay {
 	border: 2px dashed #c0c7cf;
 	position: absolute;
 	z-index: 100;
-	height: 100%;
+	/* Same height as textarea */
+	height: 148px;
 	width: 100%;
 	top: 0;
-	/* left: 0; */
 	background-color: white;
 	justify-content: center;
 	align-items: center;
-	/* display: none; */
+	display: none;
+	border-radius: 6px;
+}
+
+/* Inputs asking user for required length and character types for password */
+#request-length {
+	display: none;
+}
+#request-chars {
 	display: none;
 }
 
-.flex {
-	display: flex;
-}
-
-.modal button {
-	/* width: 50%; */
-	margin: 0 auto;
-	margin-top: 10px;
-	/* margin-bottom: 15px; */
-}
-.modal p {
+.overlay p {
 	margin: 0;
-	text-align: center;
-}
-
-.modal form {
-	padding: 20px;
 }
 
 @media (max-width: 690px) {
@@ -163,26 +158,25 @@ button[disabled] {
 		margin: 16px 0px 0px 0px;
 		padding: 10px 15px;
 	}
-	.modal {
-		font-size: .85rem;
+	.overlay {
+		font-size: .75rem;
 	}
-	.modal button {
+	.overlay button {
 		font-size: .85rem;
 	}
 	#password {
 		font-size: 1rem;
 	}
-
-	/* .modal > :first-child {
-		padding: 20px;
-	} */
+	.overlay {
+		height: 140px;
+	}
 }
 
 @media (max-width: 500px) {
 	.btn {
 		font-size: 0.8rem;
 	}
-	.modal button {
+	.overlay button {
 		font-size: .5rem;
 	}
 }
