@@ -143,12 +143,27 @@ button[disabled] {
 /* Inputs asking user for required length and character types for password */
 #request-length {
 	display: none;
+	position: relative;
 }
 #request-chars {
 	display: none;
+	position: relative;
+	font-size: .9rem;
 }
 
-.overlay p {
+.error-message {
+	color: red;
+	display: none;
+	position: absolute;
+	font-size: .7rem;
+}
+
+#char-message {
+	width: 150%;
+	top: 20px;
+}
+
+#request-chars .overlay p {
 	margin: 0;
 }
 
@@ -170,6 +185,10 @@ button[disabled] {
 	.overlay {
 		height: 140px;
 	}
+	#char-message {
+		width: 150%;
+		top: 18px;
+	}
 }
 
 @media (max-width: 500px) {
@@ -178,5 +197,10 @@ button[disabled] {
 	}
 	.overlay button {
 		font-size: .5rem;
+	}
+	#char-message {
+		width: 110%;
+		top: 22px;
+		font-size: .6rem;
 	}
 }

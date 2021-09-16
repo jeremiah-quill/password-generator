@@ -20,12 +20,16 @@
           <div class="overlay">
             <div id="request-length">
                 <form>
-                    <label for="length">Choose Required Password Length (between 8 and 128):</label>
-                    <input type="number" id="length" name="length" min="8" max="128" required>
+                    <label for="length">Choose Password Length (between 8 and 128):</label>
+                    <input type="number" id="length" name="length" min="8" max="128" required="required">
                     <input type="submit" id="submit-length" value="Next">
                 </form>
+                <p class="error-message" id="length-message">Please submit a password length to continue</p>
+
             </div>
-            <div id="request-chars"><p>Required Character Types:</p>
+            <div id="request-chars">
+              <p>Choose Character Types to Include:</p>
+              <p class="error-message" id="char-message">Please choose at least 1 character type to continue</p>
                 <form>
                     <input class="char-input" type="checkbox" id="lowercase" name="criteria" value="lowercase" required>
                     <label for="lowercase">Lowercase</label><br>

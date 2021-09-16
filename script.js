@@ -1,5 +1,4 @@
-// TODO: Handle invalid inputs on line 70 and line 95
-
+// Todo: why isn't the required tooltip working for my inputs?
 
 // Variables
 const generateBtn = document.querySelector("#generate");
@@ -66,8 +65,11 @@ document.querySelector('#submit-length').addEventListener('click', (e) => {
         showEl('#request-chars')
 
     } else {
-        // Display message "Please choose a password length between 8 and 128"
-        console.log('Please choose a password length between 8 and 128')
+        // Display error message
+          showEl('#length-message')
+        setTimeout(() => {
+          hideEl('#length-message')
+        }, 3000)
     }
 })
 
@@ -91,8 +93,11 @@ document.querySelector('#submit-chars').addEventListener('click', (e) => {
     generateBtn.disabled = false;
 
     } else {
-        // Display message "Please choose at least one required character type"
-        console.log('Please choose at least one required character type')
+        // Display error message
+        showEl('#char-message')
+        setTimeout(() => {
+          hideEl('#char-message')
+        }, 3000)
     }
 })
 
