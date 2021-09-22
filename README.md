@@ -12,6 +12,6 @@ Hello! This is a simple password generator web app.  It features 2 criteria the 
 The following are screenshots of the finished product:
 
 ![pw-generator-pic1](https://user-images.githubusercontent.com/53875206/134366999-9736c4da-a06d-4640-8e1d-a98c7b3de97f.png)
-![pw-generator-pic2](https://user-images.githubusercontent.com/53875206/134367012-2dc0beec-447a-40d7-8b59-2ce3c04384b5.png)
+![pw-generator-pic2](https://user-images.githubusercontent.com/53875206/134367280-0ca83137-767b-4cfb-9071-97415964a27b.png)
 ![pw-generator-pic3](https://user-images.githubusercontent.com/53875206/134367022-f5abdfc1-da99-46cf-9286-bf8cb4a40ed1.png)
 ![pw-generator-pic4](https://user-images.githubusercontent.com/53875206/134367028-1b823771-c184-45ca-9f06-ad8331a5a918.png)
