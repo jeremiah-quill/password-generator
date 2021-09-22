@@ -5,9 +5,9 @@ Link to live site: https://jeremiah-quill.github.io/password-generator/
 Hello! This is a simple password generator web app.  It features 2 criteria the user must complete, length of password and characters to include.  The user is then presented with a randomy generated password that meets this criteria.  The user is able to generate another password when this process is complete without refreshing the page.  A few additional details about this app include:
 
 
---> the main generate password button is disabled while the user completes the criteria inputs.  Once the password has been generated, this button is again enabled
---> the content witin this app is displayed and hidden dynamically through javascript when the user clicks the corresponding buttons
---> the box in which all content is displayed in this app is responsive to different screen sizes, changing font size and layout to accomodate smaller screens
+* the main generate password button is disabled while the user completes the criteria inputs.  Once the password has been generated, this button is again enabled
+* the content witin this app is displayed and hidden dynamically through javascript when the user clicks the corresponding buttons
+* the box in which all content is displayed in this app is responsive to different screen sizes, changing font size and layout to accomodate smaller screens
 
 The following are screenshots of the finished product:
 
