@@ -17,20 +17,20 @@
           <h2>Generate a Password</h2>
         </div>
         <div class="card-body">
-          <div class="overlay">
+          <div id="overlay" class="overlay">
             <div id="request-length">
-                <form>
+                <form id="length-form">
                     <label for="length">Choose Password Length (between 8 and 128):</label>
                     <input type="number" id="length" name="length" min="8" max="128" required="required">
                     <input type="submit" id="submit-length" value="Next">
                 </form>
-                <p class="error-message" id="length-message">Please submit a password length to continue</p>
+                <!-- <p class="error-message" id="length-message">Please submit a password length to continue</p> -->
 
             </div>
             <div id="request-chars">
               <p>Choose Character Types to Include:</p>
-              <p class="error-message" id="char-message">Please choose at least 1 character type to continue</p>
-                <form>
+              <!-- <p class="error-message" id="char-message">Please choose at least 1 character type to continue</p> -->
+                <form id="character-form">
                     <input class="char-input" type="checkbox" id="lowercase" name="criteria" value="lowercase" required>
                     <label for="lowercase">Lowercase</label><br>
                     <input class="char-input" type="checkbox" id="uppercase" name="criteria" value="uppercase" required>
@@ -42,6 +42,9 @@
                     <input type="submit" id="submit-chars" value="Generate">
                 </form>
                 </div>
+                <p class="error-message" id="length-message">Please submit a password length to continue</p>
+                <p class="error-message" id="char-message">Please choose at least 1 character type to continue</p>
+
           </div>
           <textarea
             readonly
@@ -55,6 +58,7 @@
         </div>
       </div>
     </div>
+    <script src="characters.js"></script>
     <script src="script.js"></script>
   </body>
 </html>

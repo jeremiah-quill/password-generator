@@ -1,5 +1,3 @@
-/* Todo: Clean up responsiveness for criteria prompts */
-
 *,
 *::before,
 *::after {
@@ -149,22 +147,23 @@ button[disabled] {
 	display: none;
 	position: relative;
 	font-size: .9rem;
+	flex-direction: column;
 }
 
 .error-message {
 	color: red;
 	display: none;
 	position: absolute;
-	font-size: .7rem;
-}
-
-#char-message {
-	width: 150%;
-	top: 20px;
+	font-size: .9rem;
+	bottom: -35px;
 }
 
 #request-chars .overlay p {
 	margin: 0;
+}
+
+#request-chars p {
+	margin: 0 0 5px 0;
 }
 
 @media (max-width: 690px) {
@@ -185,10 +184,6 @@ button[disabled] {
 	.overlay {
 		height: 140px;
 	}
-	#char-message {
-		width: 150%;
-		top: 18px;
-	}
 }
 
 @media (max-width: 500px) {
@@ -198,9 +193,34 @@ button[disabled] {
 	.overlay button {
 		font-size: .5rem;
 	}
-	#char-message {
-		width: 110%;
-		top: 22px;
-		font-size: .6rem;
+	.card {
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+	#password {
+		height: 165px;
+	}
+	.overlay {
+		height: 165px;
+	}
+}
+
+@media (max-width: 445px) {
+	#length-form {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+	}
+	#length-form * {
+		margin: 5px;
+	}
+
+	#length-form input {
+		width: 25%;
+	}
+	.error-message {
+		bottom: -40px;
+		font-size: .7rem;
 	}
 }
